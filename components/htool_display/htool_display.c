@@ -63,7 +63,7 @@ wchar_t evil_twin_ssid[26] = {0};
 color_t color_all_scans[16]; // TODO: remove
 
 
-const wchar_t header[23] = u"HackingTool by kl0ibi";
+const wchar_t header[23] = u"HackingTool by AZYZ";
 const wchar_t menu[60] = u"Menu:\nLeft: ↑ / Right: ↓\nRight Long Press: OK";
 const wchar_t scan[40] = u"-) Scan Networks";
 const wchar_t deauth[40] = u"-) Deauth WiFi";
@@ -111,7 +111,7 @@ static void menu_task() {
                         }
                     }
                     hagl_put_text(display, u"hackingtool", 35, 110, color_green, font6x9);
-                    hagl_put_text(display, u"by kl0ibi", 40, 120, color_green, font6x9);
+                    hagl_put_text(display, u"by AZYZ", 40, 120, color_green, font6x9);
                     uint8_t x0 = esp_random() % 135;
                     uint16_t y0 = (esp_random() % (max_y - min_y + 1)) + min_y;
                     char random_bit = (char)((esp_random() & 0x01) + '0');
