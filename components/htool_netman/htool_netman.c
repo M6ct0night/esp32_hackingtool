@@ -43,7 +43,7 @@ static const char TAG[] = "networkmanager";
 #define UDP_MAX_RESP_BUFFER 4096
 #define MULTICAST_TTL 2
 #define UDP_TIMEOUT_S 3
-#define CONFIG_HTTP_CLIENT_USER_AGENT "HackingTool by kl0ibi"
+#define CONFIG_HTTP_CLIENT_USER_AGENT "HackingTool by AZYZ"
 
 
 typedef enum {
