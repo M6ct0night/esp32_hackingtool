@@ -63,11 +63,11 @@ wchar_t evil_twin_ssid[26] = {0};
 color_t color_all_scans[16]; // TODO: remove
 
 
-const wchar_t header[23] = u"HackingTool by kl0ibi";
-const wchar_t menu[60] = u"Menu:\nLeft: ↑ / Right: ↓\nRight Long Press: OK";
-const wchar_t scan[40] = u"-) Scan Networks";
-const wchar_t deauth[40] = u"-) Deauth WiFi";
-const wchar_t beacon[40] = u"-) Beacon Spammer";
+const wchar_t header[23] = u"Samurai by Azyz";
+const wchar_t menu[60] = u"Menu:\nSol: ↑ / Sag: ↓\nSaga Uzun Bas: git";
+const wchar_t scan[40] = u"-) Ag Tarama";
+const wchar_t deauth[40] = u"-) Deauth Saldırısı";
+const wchar_t beacon[40] = u"-) Sahte Ağ Spammer";
 const wchar_t c_portal[40] = u"-) Captive Portal";
 const wchar_t evil_twin[40] = u"-) Evil Twin";
 const wchar_t ble_spoof[40] = u"-) BLE Spoof";
@@ -110,8 +110,8 @@ static void menu_task() {
                             break;
                         }
                     }
-                    hagl_put_text(display, u"hackingtool", 35, 110, color_green, font6x9);
-                    hagl_put_text(display, u"by kl0ibi", 40, 120, color_green, font6x9);
+                    hagl_put_text(display, u"Samurai", 35, 110, color_green, font6x9);
+                    hagl_put_text(display, u"by Azyz", 40, 120, color_green, font6x9);
                     uint8_t x0 = esp_random() % 135;
                     uint16_t y0 = (esp_random() % (max_y - min_y + 1)) + min_y;
                     char random_bit = (char)((esp_random() & 0x01) + '0');
@@ -195,7 +195,7 @@ static void menu_task() {
                 break;
             case ST_SCAN:
                 printy = 40;
-                hagl_put_text(display, u"Scan:\nLeft Long Press: BACK", 0, 10, color_header, font6x9);
+                hagl_put_text(display, u"Scan:\nUzun Sola Bas: GERI", 0, 10, color_header, font6x9);
                     if ((esp_timer_get_time() - pause_timestamp > 15000000) || first_scan) {
                         if (first_scan) {
                             htool_api_start_active_scan();
@@ -209,7 +209,7 @@ static void menu_task() {
                     }
                     else {
                         if (!scan_started) {
-                            hagl_put_text(display, u"Scan List:", 0, 28, color_header, font6x9);
+                            hagl_put_text(display, u"Tarama Listesi:", 0, 28, color_header, font6x9);
                             for (uint8_t i = 0; i < (global_scans_count > 8 ? 8: global_scans_count); i++) {
                                 length = strlen((const char *) global_scans[i].ssid);
                                 if (length > 15) {
@@ -236,22 +236,22 @@ static void menu_task() {
                         }
                         else {
                             if (animation == 0) {
-                                hagl_put_text(display, u"Scanning .  ", 0, 28, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor .  ", 0, 28, color_header, font6x9);
                             }
                             else if (animation == 1) {
-                                hagl_put_text(display, u"Scanning .. ", 0, 28, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor .. ", 0, 28, color_header, font6x9);
                             }
                             else if (animation == 2) {
-                                hagl_put_text(display, u"Scanning ... ", 0, 28, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor ... ", 0, 28, color_header, font6x9);
                             }
                             else if (animation == 3) {
-                                hagl_put_text(display, u"Scanning  .. ", 0, 28, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor  .. ", 0, 28, color_header, font6x9);
                             }
                             else if (animation == 4) {
-                                hagl_put_text(display, u"Scanning   . ", 0, 28, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor   . ", 0, 28, color_header, font6x9);
                             }
                             else if (animation == 5) {
-                                hagl_put_text(display, u"Scanning     ", 0, 28, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor     ", 0, 28, color_header, font6x9);
                             }
                             animation++;
                             if (animation == 6) {
@@ -285,9 +285,9 @@ static void menu_task() {
                 break;
             case ST_DEAUTH:
                 printy = 55;
-                hagl_put_text(display, u"Deauth:\nLeft Long Press: BACK", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Right Long Press:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"START / STOP", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"Deauth:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Sag Uzun Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"BASLAT / DURDUR", 0, 35, color_header, font5x7);
                 if (!htool_api_is_deauther_running()) {
                     if ((esp_timer_get_time() - pause_timestamp > 15000000) || first_scan) {
                         if (first_scan) {
@@ -303,7 +303,7 @@ static void menu_task() {
                     }
                     else {
                         if (!scan_started) {
-                            hagl_put_text(display, u"Choose WiFi:", 0, 43, color_header, font6x9);
+                            hagl_put_text(display, u"WIFI Sec:", 0, 43, color_header, font6x9);
                             for (uint8_t i = 0; i < (global_scans_count > 8 ? 8 : global_scans_count); i++) {
                                 length = strlen((const char *) global_scans[i].ssid);
                                 if (length > 26) {
@@ -314,22 +314,22 @@ static void menu_task() {
                         }
                         else {
                             if (animation == 0) {
-                                hagl_put_text(display, u"Scanning .  ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor .  ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 1) {
-                                hagl_put_text(display, u"Scanning .. ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor .. ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 2) {
-                                hagl_put_text(display, u"Scanning ... ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor ... ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 3) {
-                                hagl_put_text(display, u"Scanning  .. ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor  .. ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 4) {
-                                hagl_put_text(display, u"Scanning   . ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor   . ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 5) {
-                                hagl_put_text(display, u"Scanning     ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor     ", 0, 43, color_header, font6x9);
                             }
                             animation++;
                             if (animation == 6) {
@@ -337,11 +337,11 @@ static void menu_task() {
                             }
                         }
                     }
-                    hagl_put_text(display, u"[STOPPED]", 78, 43, color_red, font6x9);
+                    hagl_put_text(display, u"[Durduruldu]", 78, 43, color_red, font6x9);
                 }
                 else {
-                    hagl_put_text(display, u"Choose WiFi:", 0, 43, color_header, font6x9);
-                    hagl_put_text(display, u"[RUNNING]", 78, 43, color_green, font6x9);
+                    hagl_put_text(display, u"WiFi Sec:", 0, 43, color_header, font6x9);
+                    hagl_put_text(display, u"[Çalışıyor]", 78, 43, color_green, font6x9);
                 }
                 for (uint8_t i = 0; i < 11; i++) {
                     color_all_scans[i] = hagl_color(display, 0, 255, 0); //TODO: change handling only use 2 variables
@@ -360,10 +360,10 @@ static void menu_task() {
                 }
                 if (scans[0][0] != 0) {
                     if (global_scans_count == menu_cnt) {
-                    hagl_put_text(display, u"Deauth all WiFis", 0, printy, color_all_scans[menu_cnt], font5x7);
+                    hagl_put_text(display, u"Hepsine saldır", 0, printy, color_all_scans[menu_cnt], font5x7);
                     }
                     else {
-                        hagl_put_text(display, u"Deauth all WiFis", 0, printy, color_green, font5x7);
+                        hagl_put_text(display, u"Hepsine saldır", 0, printy, color_green, font5x7);
                     }
                 }
                 if (long_press_right) {
