@@ -44,8 +44,8 @@ color_t color_all_scans[16]; // TODO: remove
 
 
 const wchar_t header[23] = u"Samurai by Azyz";
-const wchar_t menu[60] = u"Menu:\nSol: ↑ / Sag: ↓\nSaga Uzun Bas: git";
-const wchar_t scan[40] = u"-) Ag Tarama";
+const wchar_t menu[60] = u"Menu:\nSol: ↑ / Sag: ↓\nSağa Uzun Bas: git";
+const wchar_t scan[40] = u"-) Ağ Tarama";
 const wchar_t deauth[40] = u"-) Deauth Saldırısı";
 const wchar_t beacon[40] = u"-) Ağ Spammer";
 const wchar_t c_portal[40] = u"-) Captive Portal";
@@ -175,7 +175,7 @@ static void menu_task() {
                 break;
             case ST_SCAN:
                 printy = 40;
-                hagl_put_text(display, u"Scan:\nUzun Sola Bas: GERI", 0, 10, color_header, font6x9);
+                hagl_put_text(display, u"Tara:\nSola Uzun Bas: GERİ", 0, 10, color_header, font6x9);
                     if ((esp_timer_get_time() - pause_timestamp > 15000000) || first_scan) {
                         if (first_scan) {
                             htool_api_start_active_scan();
@@ -265,9 +265,9 @@ static void menu_task() {
                 break;
             case ST_DEAUTH:
                 printy = 55;
-                hagl_put_text(display, u"Deauth:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Sag Uzun Bas:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"BASLAT / DURDUR", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"Deauth:\nUzun Sola Bas: GERİ", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Sağa Uzun Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"BAŞLAT / DURDUR", 0, 35, color_header, font5x7);
                 if (!htool_api_is_deauther_running()) {
                     if ((esp_timer_get_time() - pause_timestamp > 15000000) || first_scan) {
                         if (first_scan) {
@@ -283,7 +283,7 @@ static void menu_task() {
                     }
                     else {
                         if (!scan_started) {
-                            hagl_put_text(display, u"WIFI Sec:", 0, 43, color_header, font6x9);
+                            hagl_put_text(display, u"WİFİ Seç:", 0, 43, color_header, font6x9);
                             for (uint8_t i = 0; i < (global_scans_count > 8 ? 8 : global_scans_count); i++) {
                                 length = strlen((const char *) global_scans[i].ssid);
                                 if (length > 26) {
@@ -320,7 +320,7 @@ static void menu_task() {
                     hagl_put_text(display, u"[Durduruldu]", 78, 43, color_red, font6x9);
                 }
                 else {
-                    hagl_put_text(display, u"WiFi Sec:", 0, 43, color_header, font6x9);
+                    hagl_put_text(display, u"WiFi Seç:", 0, 43, color_header, font6x9);
                     hagl_put_text(display, u"[Çalışıyor]", 78, 43, color_green, font6x9);
                 }
                 for (uint8_t i = 0; i < 11; i++) {
@@ -380,16 +380,16 @@ static void menu_task() {
                 hagl_clear(display);
                 break;
             case ST_BEACON:
-                hagl_put_text(display, u"Beacon Spammer\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7); //TOOO: change header
-                hagl_put_text(display, u"Uzun Saga Bas", 0, 26, color_header, font5x7);
+                hagl_put_text(display, u"Ağ Spamlayıcı\nUzun Sola Bas: GERİ", 0, 10, color_header, font5x7); //TOOO: change header
+                hagl_put_text(display, u"Sağa Uzun Bas", 0, 26, color_header, font5x7);
                 for (uint8_t i = 0; i < 4; i++) {
                     color_all_scans[i] = hagl_color(display, 0, 255, 0);
                 }
                 color_all_scans[menu_cnt] = hagl_color(display, 255, 0, 0);
 
                 hagl_put_text(display, u"-) Rastgele (hızlı)", 0, 46, color_all_scans[0], font5x7);
-                hagl_put_text(display, u"-) WiFi Sec (rastgele mac)", 0, 56, color_all_scans[1], font5x7);
-                hagl_put_text(display, u"-) WiFi Sec (aynı mac)", 0, 66, color_all_scans[2], font5x7);
+                hagl_put_text(display, u"-) WiFi Seç (rastgele mac)", 0, 56, color_all_scans[1], font5x7);
+                hagl_put_text(display, u"-) WiFi Seç (aynı mac)", 0, 66, color_all_scans[2], font5x7);
                 hagl_put_text(display, u"-) troll (yavaş)", 0, 76, color_all_scans[3], font5x7);
 
                 if (long_press_right) {
@@ -452,9 +452,9 @@ static void menu_task() {
                 break;
             case ST_BEACON_SUBMENU:
                 printy = 55;
-                hagl_put_text(display, u"Ag Spamlayıcı:\nSol Uzun Bas: Geri ", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Sag Uzun Bas:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"Başla / Dur", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"AĞ Spamlayıcı:\nSola Uzun Bas: Geri ", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Sağa Uzun Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"Başlat / Dur", 0, 35, color_header, font5x7);
                 if (!htool_api_is_beacon_spammer_running()) {
                     if ((esp_timer_get_time() - pause_timestamp > 15000000) || first_scan) {
                         if (first_scan) {
@@ -470,7 +470,7 @@ static void menu_task() {
                     }
                     else {
                         if (!scan_started) {
-                            hagl_put_text(display, u"WiFi Sec:", 0, 43, color_header, font6x9);
+                            hagl_put_text(display, u"WiFi Seç:", 0, 43, color_header, font6x9);
                             for (uint8_t i = 0; i < (global_scans_count > 8 ? 8 : global_scans_count); i++) {
                                 length = strlen((const char *) global_scans[i].ssid);
                                 if (length > 26) {
@@ -507,8 +507,8 @@ static void menu_task() {
                     hagl_put_text(display, u"[DURDU]", 78, 43, color_red, font6x9);
                 }
                 else {
-                    hagl_put_text(display, u"WiFi Sec:", 0, 43, color_header, font6x9);
-                    hagl_put_text(display, u"[CALISIYOR]", 78, 43, color_green, font6x9);
+                    hagl_put_text(display, u"WiFi Seç:", 0, 43, color_header, font6x9);
+                    hagl_put_text(display, u"[ÇALIŞIYOR]", 78, 43, color_green, font6x9);
                 }
                 for (uint8_t i = 0; i < 11; i++) {
                     color_all_scans[i] = hagl_color(display, 0, 255, 0);
@@ -527,10 +527,10 @@ static void menu_task() {
                 }
                 if (scans[0][0] != 0) {
                     if (global_scans_count == menu_cnt) {
-                        hagl_put_text(display, u"Tum WiFileri Spamla", 0, printy, color_all_scans[menu_cnt], font5x7);
+                        hagl_put_text(display, u"Tüm WiFileri Spamla", 0, printy, color_all_scans[menu_cnt], font5x7);
                     }
                     else {
-                        hagl_put_text(display, u"Tum WiFileri Spamla", 0, printy, color_green, font5x7);
+                        hagl_put_text(display, u"Tüm WiFileri Spamla", 0, printy, color_green, font5x7);
                     }
                 }
                 if (long_press_right) {
@@ -558,9 +558,9 @@ static void menu_task() {
                 break;
             case ST_C_PORTAL:
                 printy = 55;
-                hagl_put_text(display, u"Captive Portal:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Uzun Saga Bas:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"BASLAT / DUR", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"Captive Portal:\nUzun Sola Bas: GERİ", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Sağa Uzun Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"BAŞLAT / DUR", 0, 35, color_header, font5x7);
 
                 if (htool_api_is_captive_portal_running()) {
                     if (animation == 0) {
@@ -586,7 +586,7 @@ static void menu_task() {
                         animation = 0;
                     }
                     if (htool_wifi_get_user_cred_len()) {
-                        hagl_put_text(display, u"Kullanici:", 0, printy, color_red, font6x9);
+                        hagl_put_text(display, u"Kullanıcı adı:", 0, printy, color_red, font6x9);
                         printy += 10;
                         uint32_t printed_size = 0;
                         uint32_t size = htool_wifi_get_user_cred_len();
@@ -605,7 +605,7 @@ static void menu_task() {
                         }
                     }
                     if (htool_wifi_get_pw_cred_len()) {
-                        hagl_put_text(display, u"Sifre:", 0, printy, color_red, font6x9);
+                        hagl_put_text(display, u"Şifre:", 0, printy, color_red, font6x9);
                         printy += 10;
                         uint32_t printed_size = 0;
                         uint32_t size = htool_wifi_get_pw_cred_len();
@@ -624,7 +624,7 @@ static void menu_task() {
                         }
 
                     }
-                    hagl_put_text(display, u"[CALSIYOR]", 78, 35, color_green, font6x9);
+                    hagl_put_text(display, u"[ÇALSIYOR]", 78, 35, color_green, font6x9);
                 }
                 else {
                     hagl_put_text(display, u"[DURDURULDU]", 78, 35, color_red, font6x9);
@@ -665,9 +665,9 @@ static void menu_task() {
                 hagl_clear(display);
                 break;
             case ST_EVIL_TWIN:
-                hagl_put_text(display, u"Evil Twin:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Uzun Saga Bas:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"Marka Sec", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"Evil Twin:\nUzun Sola Bas: GERİ", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Uzun Sağa Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"Marka Seç", 0, 35, color_header, font5x7);
                 for (uint8_t i = 0; i < 16; i++) {
                     color_all_scans[i] = hagl_color(display, 0, 255, 0);
                 }
@@ -713,9 +713,9 @@ static void menu_task() {
                 break;
             case ST_EVIL_TWIN_SUBMENU:
                 printy = 75;
-                hagl_put_text(display, u"Evil Twin:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Uzun Saga Bas:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"BASLAT / DUR", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"Evil Twin:\nUzun Sola Bas: GERi", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Sağa Uzun Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"BAŞLAT / DUR", 0, 35, color_header, font5x7);
 
                 if (htool_api_is_evil_twin_running()) {
                     if (animation == 0) {
@@ -741,11 +741,11 @@ static void menu_task() {
                         animation = 0;
                     }
 
-                    hagl_put_text(display, u"Uzun Sola Bas: GERI:", 0, 45, color_green, font6x9);
+                    hagl_put_text(display, u"Uzun Sola Bas: GERİ:", 0, 45, color_green, font6x9);
                     hagl_put_text(display, evil_twin_ssid, 0, 55, color_green, font6x9);
 
                     if (htool_wifi_get_user_cred_len()) {
-                        hagl_put_text(display, u"Sifre:", 0, printy, color_red, font6x9);
+                        hagl_put_text(display, u"Şifre:", 0, printy, color_red, font6x9);
                         printy += 10;
                         uint32_t printed_size = 0;
                         uint32_t size = htool_wifi_get_user_cred_len();
@@ -763,7 +763,7 @@ static void menu_task() {
                             printy += 10;
                         }
                     }
-                    hagl_put_text(display, u"[CALISIYOR]", 78, 35, color_green, font6x9);
+                    hagl_put_text(display, u"[ÇALIŞIYOR]", 78, 35, color_green, font6x9);
                 }
                 else {
                     printy = 55;
@@ -796,7 +796,7 @@ static void menu_task() {
                     }
                     else {
                         if (!scan_started) {
-                            hagl_put_text(display, u"Wifi Sec:", 0, 43, color_header, font6x9);
+                            hagl_put_text(display, u"Wifi Seç:", 0, 43, color_header, font6x9);
                             for (uint8_t i = 0; i < (global_scans_count > 8 ? 8 : global_scans_count); i++) {
                                 length = strlen((const char *) global_scans[i].ssid);
                                 if (length > 26) {
@@ -864,12 +864,12 @@ static void menu_task() {
                 hagl_clear(display);
                 break;
             case ST_BLE_SPOOF:
-                hagl_put_text(display, u"BLE Patlatici [1]:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Uzun Saga Bas:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"BASLAT / DUR", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"BLE Patlatıcı [1]:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Uzun Sağa Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"BAşLAT / DUR", 0, 35, color_header, font5x7);
 
-                hagl_put_text(display, u"-) Rastgele Dongu (Saglam)", 0, 46, menu_cnt == 0 ? color_red : color_green, font5x7);
-                hagl_put_text(display, u"-) Rastgele Apple Dongusu", 0, 56, menu_cnt == 1 ? color_red : color_green, font5x7);
+                hagl_put_text(display, u"-) Rastgele Döngü (Sağlam)", 0, 46, menu_cnt == 0 ? color_red : color_green, font5x7);
+                hagl_put_text(display, u"-) Rastgele Apple Döngüsü", 0, 56, menu_cnt == 1 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) AirPods", 0, 66, menu_cnt == 2 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) AirPods Pro", 0, 76, menu_cnt == 3 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) AirPods Max", 0, 86, menu_cnt == 4 ? color_red : color_green, font5x7);
@@ -886,9 +886,9 @@ static void menu_task() {
                 hagl_put_text(display, u"-) Beats Studio 3", 0, 196, menu_cnt == 15 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Beats Studio Pro", 0, 206, menu_cnt == 16 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Beats Fit Pro", 0, 216, menu_cnt == 17 ? color_red : color_green, font5x7);
-                hagl_put_text(display, u"-) Next Page", 0, 226, menu_cnt == 18 ? color_red : color_green, font5x7);
+                hagl_put_text(display, u"-) Sonraki Sayfa", 0, 226, menu_cnt == 18 ? color_red : color_green, font5x7);
                 if (htool_api_ble_adv_running()) {
-                    hagl_put_text(display, u"[CALISIYOR]", 78, 35, color_green, font6x9);
+                    hagl_put_text(display, u"[ÇALIŞIYOR]", 78, 35, color_green, font6x9);
                     if (menu_cnt == 0) {
                         htool_api_set_ble_adv(39); // set random adv
                     }
@@ -939,11 +939,11 @@ static void menu_task() {
                 vTaskDelay(pdMS_TO_TICKS(100));
                 break;
             case ST_BLE_SPOOF_SUBMENU1:
-                hagl_put_text(display, u"BLE Patlatici [2]:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Uzun Saga Bas:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"BASLAT / DURDUR", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"BLE Patlatıcı [2]:\nUzun Sola Bas: GERİ", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Uzun Sağa Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"BAŞLAT / DURDUR", 0, 35, color_header, font5x7);
 
-                hagl_put_text(display, u"-) Oncekı Sayfa", 0, 46, menu_cnt == 0 ? color_red : color_green, font5x7);
+                hagl_put_text(display, u"-) Öncekı Sayfa", 0, 46, menu_cnt == 0 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Beats Buds Plus", 0, 56, menu_cnt == 1 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) AppleTV Setup", 0, 66, menu_cnt == 2 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) AppleTV Pair", 0, 76, menu_cnt == 3 ? color_red : color_green, font5x7);
@@ -963,7 +963,7 @@ static void menu_task() {
                 hagl_put_text(display, u"-) Samsung French Watch4", 0, 216, menu_cnt == 17 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Sonraki Sayfa", 0, 226, menu_cnt == 18 ? color_red : color_green, font5x7);
                 if (htool_api_ble_adv_running()) {
-                    hagl_put_text(display, u"[RUNNING]", 78, 35, color_green, font6x9);
+                    hagl_put_text(display, u"[ÇALIŞIYOR]", 78, 35, color_green, font6x9);
                     if (menu_cnt != 0 && menu_cnt != 18) {
                         htool_api_set_ble_adv(menu_cnt + 16);
                     }
@@ -1013,18 +1013,18 @@ static void menu_task() {
                 vTaskDelay(pdMS_TO_TICKS(100));
                 break;
             case ST_BLE_SPOOF_SUBMENU2:
-                hagl_put_text(display, u"BLE Patlatici [3]:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Uzun Saga Bas:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"BASLAT / DURDUR", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"BLE Patlatıcı [3]:\nUzun Sola Bas: GERİ", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Uzun Sağa Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"BAŞLAT / DURDUR", 0, 35, color_header, font5x7);
 
-                hagl_put_text(display, u"-) Onceki Sayfa", 0, 46, menu_cnt == 0 ? color_red : color_green, font5x7);
+                hagl_put_text(display, u"-) Önceki Sayfa", 0, 46, menu_cnt == 0 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Samsung Fox Watch5", 0, 56, menu_cnt == 1 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Samsung Watch5", 0, 66, menu_cnt == 2 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Samsung Watch5 Pro", 0, 76, menu_cnt == 3 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Samsung Watch6", 0, 86, menu_cnt == 4 ? color_red : color_green, font5x7);
                 hagl_put_text(display, u"-) Microsoft", 0, 96, menu_cnt == 5 ? color_red : color_green, font5x7);
                 if (htool_api_ble_adv_running()) {
-                    hagl_put_text(display, u"[CALISIYOR]", 78, 35, color_green, font6x9);
+                    hagl_put_text(display, u"[ÇALIŞIYOR]", 78, 35, color_green, font6x9);
                     if (menu_cnt != 0) {
                         htool_api_set_ble_adv(menu_cnt + 33);
                     }
