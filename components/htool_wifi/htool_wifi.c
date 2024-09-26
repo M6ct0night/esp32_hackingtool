@@ -1,24 +1,4 @@
-/*
-Copyright (c) 2023 kl0ibi
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
- */
 #include <string.h>
 #include "htool_wifi.h"
 #include "esp_err.h"
@@ -122,9 +102,9 @@ static uint32_t cred_pw_len = 0;
 static uint32_t cred_user_len = 0;
 
 
-const char funny_ssids[24][32] = {"Two Girls One Router", "I'm Watching You", "Mom Use This One", "Martin Router King", "Never Gonna Give You Up", "VIRUS.EXE", "All Your Bandwidth Belong to Us", "Byte Me", "Never Gonna Give You Wifi", "The Password is...",
-                            "Girls Gone Wireless", "Vladimir Routin", "Try Me", "Definitely Not Wi-Fi", "Click and Die", "Connecting...", "Use at your own risk", "99 problems but Wi-Fi Aint One", "FreeVirus", "You are hacked!", "Next time lock your router",
-                            "For Porn Use Only", "You Pay Now", "I can read your emails"};
+const char funny_ssids[24][32] = {"Cinsel Baglantı", "Seni izliyorum", "Bunu ANAN kullansin", "S2mle100les", "Kara Boga", "VIRUS.EXE", "Pesindeyim", "Hz.Muhammet İphone", "Wİ-Fİme girene sikim girsin", "Sifre A...",
+                            "İp Adresini goruyorum", "Karamcik", "Dene beni", "Kesinlikle Wi-Fi Degil", "Tikla ve Ol", "Baglaniyor...", "Fenasi Kerim iphone", "Allah yok İnternet VAR", "BedavaVirus", "HACKLENDIN!", "Arkandayım",
+                            "Sadece Porno Icin", "İntikam Zamani", "emaillerini okuyabiliyorum", "Daramcik"};
 
 captive_portal_task_args_t captive_portal_task_args;
 
