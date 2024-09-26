@@ -558,35 +558,35 @@ static void menu_task() {
                 break;
             case ST_C_PORTAL:
                 printy = 55;
-                hagl_put_text(display, u"Captive Portal:\nLeft Long Press: BACK", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Right Long Press:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"START / STOP", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"Captive Portal:\nUzun Sola Bas: GERI", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Uzun Saga Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"BASLAT / DUR", 0, 35, color_header, font5x7);
 
                 if (htool_api_is_captive_portal_running()) {
                     if (animation == 0) {
-                        hagl_put_text(display, u"Wait for creds .  ", 0, 45, color_green, font6x9);
+                        hagl_put_text(display, u"Creds Bekleniyor .  ", 0, 45, color_green, font6x9);
                     }
                     else if (animation == 1) {
-                        hagl_put_text(display, u"Wait for creds .. ", 0, 45, color_green, font6x9);
+                        hagl_put_text(display, u"Creds Bekleniyor .. ", 0, 45, color_green, font6x9);
                     }
                     else if (animation == 2) {
-                        hagl_put_text(display, u"Wait for creds ... ", 0, 45, color_green, font6x9);
+                        hagl_put_text(display, u"Creds Bekleniyor ... ", 0, 45, color_green, font6x9);
                     }
                     else if (animation == 3) {
-                        hagl_put_text(display, u"Wait for creds  .. ", 0, 45, color_green, font6x9);
+                        hagl_put_text(display, u"Creds Bekleniyor  .. ", 0, 45, color_green, font6x9);
                     }
                     else if (animation == 4) {
-                        hagl_put_text(display, u"Wait for creds   . ", 0, 45, color_green, font6x9);
+                        hagl_put_text(display, u"Creds Bekleniyor   . ", 0, 45, color_green, font6x9);
                     }
                     else if (animation == 5) {
-                        hagl_put_text(display, u"Wait for creds     ", 0, 45, color_green, font6x9);
+                        hagl_put_text(display, u"Creds Bekleniyor     ", 0, 45, color_green, font6x9);
                     }
                     animation++;
                     if (animation == 6) {
                         animation = 0;
                     }
                     if (htool_wifi_get_user_cred_len()) {
-                        hagl_put_text(display, u"Username:", 0, printy, color_red, font6x9);
+                        hagl_put_text(display, u"Kullanici:", 0, printy, color_red, font6x9);
                         printy += 10;
                         uint32_t printed_size = 0;
                         uint32_t size = htool_wifi_get_user_cred_len();
@@ -605,7 +605,7 @@ static void menu_task() {
                         }
                     }
                     if (htool_wifi_get_pw_cred_len()) {
-                        hagl_put_text(display, u"Password:", 0, printy, color_red, font6x9);
+                        hagl_put_text(display, u"Sifre:", 0, printy, color_red, font6x9);
                         printy += 10;
                         uint32_t printed_size = 0;
                         uint32_t size = htool_wifi_get_pw_cred_len();
@@ -624,10 +624,10 @@ static void menu_task() {
                         }
 
                     }
-                    hagl_put_text(display, u"[RUNNING]", 78, 35, color_green, font6x9);
+                    hagl_put_text(display, u"[CALSIYOR]", 78, 35, color_green, font6x9);
                 }
                 else {
-                    hagl_put_text(display, u"[STOPPED]", 78, 35, color_red, font6x9);
+                    hagl_put_text(display, u"[DURDURULDU]", 78, 35, color_red, font6x9);
                     for (uint8_t i = 0; i < 4; i++) {
                         color_all_scans[i] = hagl_color(display, 0, 255, 0);
                     }
