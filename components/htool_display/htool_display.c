@@ -47,10 +47,10 @@ const wchar_t header[23] = u"Samurai by Azyz";
 const wchar_t menu[60] = u"Menu:\nSol: ↑ / Sag: ↓\nSaga Uzun Bas: git";
 const wchar_t scan[40] = u"-) Ag Tarama";
 const wchar_t deauth[40] = u"-) Deauth Saldırısı";
-const wchar_t beacon[40] = u"-) Sahte Ağ Spammer";
+const wchar_t beacon[40] = u"-) Ağ Spammer";
 const wchar_t c_portal[40] = u"-) Captive Portal";
 const wchar_t evil_twin[40] = u"-) Evil Twin";
-const wchar_t ble_spoof[40] = u"-) BLE Spoof";
+const wchar_t ble_spoof[40] = u"-) BLE Patlatıcı";
 uint8_t printy = 0;
 uint8_t length = 0;
 wchar_t scans[10][50] = {0};
@@ -387,10 +387,10 @@ static void menu_task() {
                 }
                 color_all_scans[menu_cnt] = hagl_color(display, 255, 0, 0);
 
-                hagl_put_text(display, u"-) Random (fastest)", 0, 46, color_all_scans[0], font5x7);
-                hagl_put_text(display, u"-) Choose WiFi (random mac)", 0, 56, color_all_scans[1], font5x7);
-                hagl_put_text(display, u"-) Choose WiFi (same mac)", 0, 66, color_all_scans[2], font5x7);
-                hagl_put_text(display, u"-) Funny (slowest)", 0, 76, color_all_scans[3], font5x7);
+                hagl_put_text(display, u"-) Rastgele (hızlı)", 0, 46, color_all_scans[0], font5x7);
+                hagl_put_text(display, u"-) WiFi Sec (rastgele mac)", 0, 56, color_all_scans[1], font5x7);
+                hagl_put_text(display, u"-) WiFi Sec (aynı mac)", 0, 66, color_all_scans[2], font5x7);
+                hagl_put_text(display, u"-) troll (yavaş)", 0, 76, color_all_scans[3], font5x7);
 
                 if (long_press_right) {
                     long_press_right = false;
@@ -418,24 +418,24 @@ static void menu_task() {
                     break;
                 }
                 if (htool_api_is_beacon_spammer_running()) {
-                    hagl_put_text(display, u"STOP!", 100, 26, color_red, font6x9);
+                    hagl_put_text(display, u"DUR!", 100, 26, color_red, font6x9);
                     if (animation == 0) {
-                        hagl_put_text(display, u"Spamming .  ", 0, 34, color_header, font6x9);
+                        hagl_put_text(display, u"Spamlanıyor .  ", 0, 34, color_header, font6x9);
                     }
                     else if (animation == 1) {
-                        hagl_put_text(display, u"Spamming .. ", 0, 34, color_header, font6x9);
+                        hagl_put_text(display, u"Spamlanıyor .. ", 0, 34, color_header, font6x9);
                     }
                     else if (animation == 2) {
-                        hagl_put_text(display, u"Spamming ... ", 0, 34, color_header, font6x9);
+                        hagl_put_text(display, u"Spamlanıyor ... ", 0, 34, color_header, font6x9);
                     }
                     else if (animation == 3) {
-                        hagl_put_text(display, u"Spamming  .. ", 0, 34, color_header, font6x9);
+                        hagl_put_text(display, u"Spamlanıyor  .. ", 0, 34, color_header, font6x9);
                     }
                     else if (animation == 4) {
-                        hagl_put_text(display, u"Spamming   . ", 0, 34, color_header, font6x9);
+                        hagl_put_text(display, u"Spamlanıyor   . ", 0, 34, color_header, font6x9);
                     }
                     else if (animation == 5) {
-                        hagl_put_text(display, u"Spamming     ", 0, 34, color_header, font6x9);
+                        hagl_put_text(display, u"Spamlanıyor     ", 0, 34, color_header, font6x9);
                     }
                     animation++;
                     if (animation == 6) {
@@ -443,8 +443,8 @@ static void menu_task() {
                     }
                 }
                 else {
-                    hagl_put_text(display, u"SPAM!", 100, 26, color_green, font6x9);
-                    hagl_put_text(display, u"Spamming     ", 0, 34, color_passive, font6x9);
+                    hagl_put_text(display, u"SPAMLA!", 100, 26, color_green, font6x9);
+                    hagl_put_text(display, u"Spamlanıyor     ", 0, 34, color_passive, font6x9);
                 }
                 vTaskDelay(pdMS_TO_TICKS(100));
                 hagl_flush(display);
@@ -452,9 +452,9 @@ static void menu_task() {
                 break;
             case ST_BEACON_SUBMENU:
                 printy = 55;
-                hagl_put_text(display, u"Beacon Spammer:\nLeft Long Press: BACK", 0, 10, color_header, font5x7);
-                hagl_put_text(display, u"Right Long Press:", 0, 25, color_header, font5x7);
-                hagl_put_text(display, u"START / STOP", 0, 35, color_header, font5x7);
+                hagl_put_text(display, u"Ag Spamlayıcı:\nSol Uzun Bas: Geri ", 0, 10, color_header, font5x7);
+                hagl_put_text(display, u"Sag Uzun Bas:", 0, 25, color_header, font5x7);
+                hagl_put_text(display, u"Başla / Dur", 0, 35, color_header, font5x7);
                 if (!htool_api_is_beacon_spammer_running()) {
                     if ((esp_timer_get_time() - pause_timestamp > 15000000) || first_scan) {
                         if (first_scan) {
@@ -470,7 +470,7 @@ static void menu_task() {
                     }
                     else {
                         if (!scan_started) {
-                            hagl_put_text(display, u"Choose WiFi:", 0, 43, color_header, font6x9);
+                            hagl_put_text(display, u"WiFi Sec:", 0, 43, color_header, font6x9);
                             for (uint8_t i = 0; i < (global_scans_count > 8 ? 8 : global_scans_count); i++) {
                                 length = strlen((const char *) global_scans[i].ssid);
                                 if (length > 26) {
@@ -481,22 +481,22 @@ static void menu_task() {
                         }
                         else {
                             if (animation == 0) {
-                                hagl_put_text(display, u"Scanning .  ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor .  ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 1) {
-                                hagl_put_text(display, u"Scanning .. ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor .. ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 2) {
-                                hagl_put_text(display, u"Scanning ... ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor ... ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 3) {
-                                hagl_put_text(display, u"Scanning  .. ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor  .. ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 4) {
-                                hagl_put_text(display, u"Scanning   . ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor   . ", 0, 43, color_header, font6x9);
                             }
                             else if (animation == 5) {
-                                hagl_put_text(display, u"Scanning     ", 0, 43, color_header, font6x9);
+                                hagl_put_text(display, u"Taranıyor     ", 0, 43, color_header, font6x9);
                             }
                             animation++;
                             if (animation == 6) {
@@ -504,11 +504,11 @@ static void menu_task() {
                             }
                         }
                     }
-                    hagl_put_text(display, u"[STOPPED]", 78, 43, color_red, font6x9);
+                    hagl_put_text(display, u"[DURDU]", 78, 43, color_red, font6x9);
                 }
                 else {
-                    hagl_put_text(display, u"Choose WiFi:", 0, 43, color_header, font6x9);
-                    hagl_put_text(display, u"[RUNNING]", 78, 43, color_green, font6x9);
+                    hagl_put_text(display, u"WiFi Sec:", 0, 43, color_header, font6x9);
+                    hagl_put_text(display, u"[CALISIYOR]", 78, 43, color_green, font6x9);
                 }
                 for (uint8_t i = 0; i < 11; i++) {
                     color_all_scans[i] = hagl_color(display, 0, 255, 0);
@@ -527,10 +527,10 @@ static void menu_task() {
                 }
                 if (scans[0][0] != 0) {
                     if (global_scans_count == menu_cnt) {
-                        hagl_put_text(display, u"Spam all WiFis", 0, printy, color_all_scans[menu_cnt], font5x7);
+                        hagl_put_text(display, u"Tum WiFileri Spamla", 0, printy, color_all_scans[menu_cnt], font5x7);
                     }
                     else {
-                        hagl_put_text(display, u"Spam all WiFis", 0, printy, color_green, font5x7);
+                        hagl_put_text(display, u"Tum WiFileri Spamla", 0, printy, color_green, font5x7);
                     }
                 }
                 if (long_press_right) {
