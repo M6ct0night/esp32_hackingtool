@@ -102,9 +102,9 @@ static uint32_t cred_pw_len = 0;
 static uint32_t cred_user_len = 0;
 
 
-const char funny_ssids[24][32] = {"Cinsel Baglantı", "Seni izliyorum", "Bunu ANAN kullansin", "S2mle100les", "Kara Boga", "VIRUS.EXE", "Pesindeyim", "Hz.Muhammet İphone", "Wİ-Fİme girene sikim girsin", "Sifre A...",
-                            "İp Adresini goruyorum", "Karamcik", "Dene beni", "Kesinlikle Wi-Fi Degil", "Tikla ve Ol", "Baglaniyor...", "Fenasi Kerim iphone", "Allah yok İnternet VAR", "BedavaVirus", "HACKLENDIN!", "Arkandayım",
-                            "Sadece Porno Icin", "İntikam Zamani", "emaillerini okuyabiliyorum", "Daramcik"};
+const char funny_ssids[24][32] = {"Cinsel Baglantı", "Seni izliyorum", "Bunu ANAN kullansin", "S2mle100les", "prosikiş_1453", "VIRUS.EXE", "Pesindeyim", "Hz.Muhammet İphone", "Wİ-Fİme girene sikim girsin", "Sifre A...",
+                            "Allah 5G", "Karamcik", "amparator", "daramcik koyu", "S2MLE100LES", "tiger.exe", "Fenasi Kerim iphone", "Allah yok İnternet VAR", "BedavaVirus", "HACKLENDIN!", "Arkandayım",
+                            "Sadece Porno Icin", "fenasikerim", "peygamber yiyen", "Daramcik"};
 
 captive_portal_task_args_t captive_portal_task_args;
 
